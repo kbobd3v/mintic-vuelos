@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} </title>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <!--===============================================================================================-->
@@ -26,6 +28,11 @@
     <script src="{{ url_for('static', filename='js/validaciones.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/template_aeropuerto_perales.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animated.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}">
+
 </head>
 <body>
     <section class="content">
@@ -49,13 +56,32 @@
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js' )}}"></script>
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js' )}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js' )}}"></script>
+	<script src="{{ url_for('static', filename='/vendor/select2/select2.min.js' )}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js' )}}"></script>
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js' )}}"></script>
+	<script src="{{ url_for('static', filename='/vendor/daterangepicker/moment.min.js' )}}"></script>
+	<script src="{{ url_for('static', filename='/vendor/daterangepicker/daterangepicker.js' )}}"></script>
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js' )}}"></script>
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='js/main.js' )}}"></script>
+  <script>
+  // Acc
+    $(document).on("click", ".naccs .menu div", function() {
+      var numberIndex = $(this).index();
+
+      if (!$(this).is("active")) {
+          $(".naccs .menu div").removeClass("active");
+          $(".naccs ul li").removeClass("active");
+
+          $(this).addClass("active");
+          $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+
+          var listItemHeight = $(".naccs ul")
+            .find("li:eq(" + numberIndex + ")")
+            .innerHeight();
+          $(".naccs ul").height(listItemHeight + "px");
+        }
+    });
+  </script>
 </body>
 </html>

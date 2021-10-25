@@ -154,7 +154,7 @@ def logout():
 @login_required
 def home():
     try:
-        return 'login exitoso'
+        return render_template('home.html')
     except Exception as e:
         print(e)
 
