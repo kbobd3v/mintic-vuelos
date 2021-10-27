@@ -60,12 +60,12 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
-              <li class="scroll-to-section"><a href="#services">Vuelos</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('home') }}" class="active">Inicio</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('view_flights') }}">Vuelos</a></li>
               <li class="scroll-to-section"><a href="#about">Buscar</a></li>
-              <li class="scroll-to-section"><a href="#portfolio">Reservas</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('view_bookings') }}">Reservas</a></li>
 
-              <li class="scroll-to-section"><a href="#perfil">Perfil</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('profile') }}">Perfil</a></li>
               <li class="scroll-to-section"><div class="main-red-button-hover"><a href="{{ url_for('logout') }}">Desconectarme</a></div></li>
             </ul>
             <a class='menu-trigger'>
@@ -91,17 +91,17 @@
             <div class="col-lg-6 align-self-center">
               <div class="owl-carousel owl-banner">
                 <div class="item header-text">
-                  <h6>Bienvenido a bordo Danilo</h6>
-                  <h2>Que te gustaria  <em>visitar</em> en el  <span>dia de hoy</span>?</h2>
+                    <h6>Bienvenido a bordo <em>{{ username }}</em></h6>
+                  <h2>Que te gustaria  <em>hacer</em>   <span>hoy</span>?</h2>
                   <p>... </p>
                   <div class="down-buttons">
                     <div class="main-blue-button-hover">
-                      <a href="#contact">Reservar</a>
+                      <a href="{{ url_for('view_bookings') }}">Reservar</a>
                     </div>
                        <div class="main-blue-button-hover">
-                      <a href="#contact">Ver vuelos</a>
+                      <a href="{{ url_for('view_flights') }}">Ver vuelos</a>
                     </div> <div class="main-blue-button-hover">
-                      <a href="#contact">Mi perfil</a>
+                      <a href="{{ url_for('profile') }}">Mi perfil</a>
                     </div>
 
                   </div>
@@ -199,6 +199,7 @@
     <script src="{{ url_for('static', filename='js/animation.js' )}}"></script>
     <script src="{{ url_for('static', filename='js/imagesloaded.js' )}}"></script>
     <script src="{{ url_for('static', filename='js/custom.js' )}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <script>
   // Acc
     $(document).on("click", ".naccs .menu div", function() {

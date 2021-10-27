@@ -115,6 +115,16 @@ def view_user(user_id):
     return f"Usuario con id ={user_id} no existe"
 
 
+@app.route('/profile')
+def profile():
+    user_id = session.get('user_id', 'user_id')
+    db = get_db()
+    user = db.execute('SELECT * FROM usuarios WHERE id_usuario= ?', (user_id,)).fetchone()
+    if user:
+        return render_template('profile.html', user=user)
+    return f"Usuario con id ={user_id} no existe"
+
+
 @app.route('/flights', methods=('GET', 'POST'))
 @login_required
 def view_flights():
@@ -239,9 +249,19 @@ def logout():
 @login_required
 def home():
     try:
-        return render_template('home.html')
+        username = request.cookies.get('username')
+        return render_template('home.html', username=username)
     except Exception as e:
         print(e)
+
+
+@app.route('/editbooking/<int:id_booking>', methods=('GET', 'POST'))
+def edit_booking(id_booking):
+    db = get_db()
+    booking = db.execute('SELECT * FROM reserva WHERE id_reserva= ?', (id_booking,)).fetchone()
+    if booking:
+        return render_template('edit_booking.html', booking=booking)
+    return f"Reserva con id ={id_booking} no existe"
 
 
 if __name__ == '__main__':

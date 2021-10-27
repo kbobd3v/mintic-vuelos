@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Reserva {% endblock %}
+{% block mainTitle %} Ver Reservas {% endblock %}
+
+{% block content %}
+<h3>Código de reserva</h3>
+<p></p>
+<hr>
+<h3>Código del pasajero</h3>
+<p>{{ booking.1 }}</p>
+<hr>
+<h3>Código del vuelo</h3>
+<p>{{ booking.2 }}</p>
+<hr>
+<form method="post">
+    <label name="id_reserva">Codigo de reserva:</label>
+    <input name="id_reserva" type="text" value="{{ booking.0 }}" readonly>
+    <label name="id_usuario">Codigo del pasajero:</label>
+    <input name="id_usuario" type="text" value="{{ booking.1 }}" readonly>
+    <label name="id_vuelo">Codigo del vuelo:</label>
+    <input name="id_vuelo" type="text" value="{{ booking.2 }}" readonly>
+    <label name="origen">Origen:</label>
+    <input name="origen" type="text" value="{{ booking.3 }}" readonly>
+    <label name="origen">Destino:</label>
+    <input name="origen" type="text" value="{{ booking.4 }}" readonly>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

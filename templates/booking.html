@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Reserva {% endblock %}
+{% block mainTitle %} Ver Reservas {% endblock %}
+
+{% block content %}
+    <h3>Código de reserva</h3>
+        <p>{{ booking.0 }}</p>
+    <hr>
+    <h3>Código del pasajero</h3>
+        <p>{{ booking.1 }}</p>
+    <hr>
+    <h3>Código del vuelo</h3>
+        <p>{{ booking.2 }}</p>
+    <hr>
+{% endblock %}

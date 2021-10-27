@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}  Reservas {% endblock %}
+{% block mainTitle %} Ver reservas {% endblock %}
+
+{% block content %}
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="table-wrap">
+                        <h4 class="text-center mb-4">Reservas</h4>
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Reserva</th>
+					        <th>Usuario</th>
+					        <th>Vuelo</th>
+							  <th>Destino</th>
+							  <th>Origen</th>
+							  <th>Detalle</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+                        {% for booking in bookings %}
+					      <tr>
+					        <th scope="row" class="scope" >{{ booking[0] }}</th>
+					        <td>{{ booking[1] }}</td>
+					        <td>{{ booking[2] }}</td>
+					        <td>{{ booking[3] }}</td>
+					        <td>{{ booking[4] }}</td>
+					        <td>
+								<a href={{ url_for('view_booking', id_reserva=booking[0]) }} class="btn btn-primary">Ver más</a>
+								<a href={{ url_for('edit_booking', id_booking=booking[0]) }} class="btn btn-primary">Editar</a>
+							</td>
+					      </tr>
+                        {% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

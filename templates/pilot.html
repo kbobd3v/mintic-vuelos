@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Piloto  {% endblock %}
+{% block mainTitle %} Ver Piloto {% endblock %}
+
+{% block content %}
+    <h3>Identificación del piloto</h3>
+        <p>{{ pilot.0 }}</p>
+    <hr>
+    <h3>Nombre</h3>
+        <p>{{ pilot.2 }}</p>
+    <hr>
+    <h3>Correo</h3>
+        <p>{{ pilot.3 }}</p>
+    <hr>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Vuelos {% endblock %}
+{% block mainTitle %} Ver Vuelos {% endblock %}
+
+{% block content %}
+    <h3>Código del Vuelo</h3>
+        <p>{{ flight.0 }}</p>
+    <hr>
+    <h3>Placa del Avión</h3>
+        <p>{{ flight.1 }}</p>
+    <hr>
+    <h3>Identidicación del piloto</h3>
+        <p>{{ flight.2 }}</p>
+    <hr>
+    <h3>Capacidad del Vuelo</h3>
+        <p>{{ flight.3 }}</p>
+    <hr>
+    <h3>Destino</h3>
+        <p>{{ flight.4 }}</p>
+    <hr>
+    <h3>Origen</h3>
+        <p>{{ flight.5 }}</p>
+    <hr>
+    <h3>Estado del Vuelo</h3>
+        <p>{{ flight.6 }}</p>
+    <hr>
+{% endblock %}

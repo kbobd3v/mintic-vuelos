@@ -35,19 +35,5 @@
 			</div>
 		</div>
 	</section>
-    <div class="row">
-        <div class="col-lg-6 align-self-center">
-            <table style="width:100%; margin-top: 60px;">
-                {% for user in users %}
-                    <tr>
-                        <td>{{ user[0] }}</td>
-                        <td>{{ user[2] }}</td>
-                        <td>{{ user[3] }}</td>
-                        <td> <a href={{ url_for('view_user', user_id=user[0]) }}>Ver usuario</a></td>
-                    </tr>
-                {% endfor %}
-                </table>
-        </div>
-    </div>
 
 {% endblock %}
