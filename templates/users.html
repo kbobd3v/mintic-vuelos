@@ -3,16 +3,51 @@
 {% block mainTitle %} Ver Usuarios {% endblock %}
 
 {% block content %}
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
 
-    <table style="width:100%; margin-top: 60px;">
-    {% for user in users %}
-        <tr>
-            <td>{{ user[0] }}</td>
-            <td>{{ user[2] }}</td>
-            <td>{{ user[3] }}</td>
-            <td> <a href={{ url_for('view_user', user_id=user[0]) }}>Ver usuario</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+					<div class="table-wrap">
+                        <h4 class="text-center mb-4">Lista de usuarios</h4>
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Id usuario</th>
+					        <th>Nombre</th>
+					        <th>Nombre de usuario</th>
+                              <th>Detalle</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+                        {% for user in users %}
+					      <tr>
+					        <th scope="row" class="scope" >{{ user[0] }}</th>
+					        <td>{{ user[2] }}</td>
+					        <td>{{ user[3] }}</td>
+					        <td><a href={{ url_for('view_user', user_id=user[0]) }} class="btn btn-primary">Ver más</a></td>
+					      </tr>
+                        {% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <div class="row">
+        <div class="col-lg-6 align-self-center">
+            <table style="width:100%; margin-top: 60px;">
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[2] }}</td>
+                        <td>{{ user[3] }}</td>
+                        <td> <a href={{ url_for('view_user', user_id=user[0]) }}>Ver usuario</a></td>
+                    </tr>
+                {% endfor %}
+                </table>
+        </div>
+    </div>
 
 {% endblock %}
