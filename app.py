@@ -299,6 +299,7 @@ def register():
         return render_template('register.html')
 
 
+@login_required
 @app.route('/logout')
 def logout():
     session.clear()
