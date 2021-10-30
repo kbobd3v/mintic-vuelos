@@ -17,6 +17,7 @@ def login_required(view):
         if g.user is None:
             return redirect(url_for('login'))
         return view(**kwargs)
+
     return wrapped_view
 
 
@@ -27,7 +28,7 @@ def load_logged_in_user():
         g.user = None
     else:
         db = get_db()
-        g.user = db.execute('SELECT * FROM usuarios WHERE id_usuario = ?', (user_id, )).fetchone()
+        g.user = db.execute('SELECT * FROM usuarios WHERE id_usuario = ?', (user_id,)).fetchone()
 
 
 @app.route("/")
@@ -61,7 +62,7 @@ def login():
                 return render_template('login.html')
 
             user = db.execute('SELECT * FROM usuarios WHERE usuario = ?',
-                              (username, )).fetchone()
+                              (username,)).fetchone()
 
             if user is None:
                 error = 'Usuario o contraseña inválidos'
@@ -116,6 +117,7 @@ def view_user(user_id):
 
 
 @app.route('/profile')
+@login_required
 def profile():
     user_id = session.get('user_id', 'user_id')
     db = get_db()
@@ -123,6 +125,33 @@ def profile():
     if user:
         return render_template('profile.html', user=user)
     return f"Usuario con id ={user_id} no existe"
+
+
+@app.route('/search-flights', methods=('GET', 'POST'))
+@login_required
+def search_flights():
+    try:
+        # Si el metodo de request es POST
+        if request.method == 'POST':
+            departure_date = request.form['departure_date']
+            return_date = request.form['return_date']
+            origin = request.form['origin']
+            destiny = request.form['destiny']
+            passengers = request.form['passengers']
+            db = get_db()
+            flights = db.execute(
+                'SELECT * FROM vuelos WHERE fecha_salida=? and fecha_regreso=? and origen=? and destino=?',
+                (departure_date, return_date, origin, destiny)).fetchall()
+
+            if not flights:
+                error = 'No se encontraron vuelos'
+                return render_template("flights.html", error=error)
+
+            return render_template("flights.html", flights=flights)
+        return render_template("search_flights.html")
+    except Exception as e:
+        print(e)
+        return 'error'
 
 
 @app.route('/flights', methods=('GET', 'POST'))
@@ -141,6 +170,37 @@ def view_flight(id_de_vuelo):
     if id_de_vuelo:
         return render_template('flight.html', flight=id_de_vuelo)
     return f"Vuelo con id ={id_de_vuelo} no existe"
+
+
+@app.route('/book-flight/<int:id_de_vuelo>', methods=('GET', 'POST'))
+@login_required
+def book_flight(id_de_vuelo):
+    try:
+        user_id = session.get('user_id', 'user_id')
+        id_vuelo = id_de_vuelo
+        print(id_vuelo)
+        if request.method == 'POST':
+            db = get_db()
+            vuelo = db.execute('SELECT * FROM vuelos WHERE id_de_vuelo= ?', (id_vuelo,)).fetchone()
+            print(vuelo)
+            user = db.execute('SELECT * FROM usuarios WHERE id_usuario= ?', (user_id,)).fetchone()
+            birthday = request.form['birthday']
+            doc_user = request.form['doc_user']
+
+            db.execute(
+                'INSERT INTO reserva (id_usuario, id_de_vuelo, origen, destino, fecha_salida, hora_salida,fecha_regreso,hora_regreso) VALUES (?,?,?,?,?,?,?,?)',
+                (user_id, vuelo[0], vuelo[4], vuelo[5], vuelo[7], vuelo[8], vuelo[9], vuelo[10]))
+            print('ok')
+            db.execute('UPDATE usuarios SET fecha_nacimiento=?, documento_usuario=?  WHERE id_usuario=?',
+                       (birthday, doc_user, user_id))
+            print('ok')
+            db.commit()
+
+            return render_template('thanks.html', name=user[2])
+        return render_template('confirmation.html', user_id=user_id, id_vuelo=id_vuelo)
+    except Exception as e:
+        print(e)
+        return render_template('home.html')
 
 
 @app.route('/pilots', methods=('GET', 'POST'))
@@ -206,9 +266,9 @@ def register():
 
             db = get_db()
 
-            #generate_password_hash
+            # generate_password_hash
 
-            #verificamos si el correo ya existe en la base de datos
+            # verificamos si el correo ya existe en la base de datos
 
             user = db.execute('SELECT id_usuario FROM usuarios WHERE correo=?', (email,)).fetchone()
 
@@ -226,7 +286,7 @@ def register():
 
             # yag = yagmail.SMTP('mintic202221@gmail.com','Mintic2022')
             # yag.send(to=email, subject= 'Activa tu cuenta',
-            #          contents='Bievenido al portal de Registro de Vacunación  usa este link '
+            #          contents='Bievenido al portal gestion de vuelos para el aeropuerto perales '
             #                   'para activar tu cuenta')
             #
             # flash("Revisa tu correo para activar tu cuenta")
@@ -250,7 +310,11 @@ def logout():
 def home():
     try:
         username = request.cookies.get('username')
-        return render_template('home.html', username=username)
+        user_id = session.get('user_id')
+        db = get_db()
+        user = db.execute('SELECT * FROM usuarios WHERE id_usuario = ?', (user_id,)).fetchone()
+
+        return render_template('home.html', username=username, tipo_usuario=user[1])
     except Exception as e:
         print(e)
 

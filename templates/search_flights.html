@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}  Vuelos {% endblock %}
+{% block mainTitle %} Ver Vuelos {% endblock %}
+
+{% block content %}
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <form accept-charset="UTF-8" action="{{ url_for('search_flights') }}" autocomplete="off" method="POST">-->
+<!--	    <label for="departure_date">Fecha de salida:</label><br />-->
+<!--	    <input name="departure_date" type="date" placeholder="Cuando quieres irte?" id="departure_date" /> <br />-->
+<!--        <label for="return_date">Fecha de llegada</label><br />-->
+<!--	    <input name="return_date" type="date" placeholder="Cuando quieres volver?" id="return_date" /> <br />-->
+<!--        <label for="origin">Origen</label><br />-->
+<!--	    <input name="origin" type="text" placeholder="De donde vienes?" id="origin" /> <br />-->
+<!--        <label for="destiny">Destino</label><br />-->
+<!--	    <input name="destiny" type="text" placeholder="A donde vamos?" id="destiny" /> <br />-->
+<!--        <label for="passengers">No. pasajeros</label><br />-->
+<!--	    <input name="passengers" type="number" placeholder="0" id="passengers" /> <br />-->
+<!--        <button style="border: 1px solid black;" type="submit" >Buscar mi aventura</button>-->
+<!--    </form>-->
+
+       <div class="wrapper bg-white" style="max-width: 800px">
+    <form action="{{ url_for('search_flights') }}" method="POST">
+
+        <div class="form-group d-sm-flex margin">
+            <div class="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative"> <input type="text" required placeholder="De donde vienes?" name="origin" class="form-control">
+                <div class="label" id="from"></div> <span class="fas fa-dot-circle text-muted"></span>
+            </div>
+            <div class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative"> <input type="text" required placeholder="A donde viajas?" name="destiny" class="form-control">
+                <div class="label" id="to"></div> <span class="fas fa-map-marker text-muted"></span>
+            </div>
+        </div>
+        <div class="form-group d-sm-flex margin">
+            <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative"> <input type="date" required placeholder="Cuando te vas?" name="departure_date" class="form-control">
+                <div class="label" id="depart"></div>
+            </div>
+            <div class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative"> <input type="date" required placeholder="Cuando regresas?" name="return_date" class="form-control">
+                <div class="label" id="return"></div>
+            </div>
+        </div>
+        <div class="form-group border-bottom d-flex align-items-center position-relative"> <input type="text" required placeholder="Cuantos viajaran?" name="passengers" class="form-control">
+            <div class="label" id="psngr"></div> <span class="fas fa-users text-muted"></span>
+        </div>
+        <div class="form-group my-3">
+            <button type="submit" class="btn btn-primary rounded-0 d-flex justify-content-center text-center p-3">Iniciar mi aventura </button>
+        </div>
+    </form>
+</div>
+{% endblock%}

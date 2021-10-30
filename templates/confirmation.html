@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}  Confirma tu reserva {% endblock %}
+{% block mainTitle %} Confirma tu reserva {% endblock %}
+
+{% block content %}
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <p>.</p>-->
+<!--    <form accept-charset="UTF-8" action="{{ url_for('book_flight', id_de_vuelo=user_id) }}" autocomplete="off" method="POST">-->
+<!--	    <label for="birthday">Cuando naciste?:</label><br />-->
+<!--	    <input name="birthday" type="date" id="birthday" /> <br />-->
+<!--        <label for="doc_user">Y como es tu identificacion?</label><br />-->
+<!--	    <input name="doc_user" type="number"  id="doc_user" /> <br />-->
+<!--        <button style="border: 1px solid black;" type="submit" >Confirmar reserva</button>-->
+<!--    </form>-->
+       <div class="wrapper bg-white" style="max-width: 800px">
+    <form action="{{ url_for('book_flight', id_de_vuelo=id_vuelo) }}" method="POST">
+
+        <div class="form-group d-sm-flex margin">
+            <label>Dinos tu fecha de cumpleaños:</label>
+            <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative"> <input type="date" required placeholder="Cuando naciste?" name="birthday" class="form-control">
+                <div  id="depart"></div>
+            </div>
+        </div>
+             <label >Y tu documento de identidad:</label>
+        <div class="form-group border-bottom d-flex align-items-center position-relative"> <input type="number" required name="doc_user" class="form-control">
+            <div id="psngr"></div> <span class="fas fa-users text-muted"></span>
+        </div>
+        <div class="form-group my-3">
+            <button type="submit" class="btn btn-primary rounded-0 d-flex justify-content-center text-center p-3">Iniciar mi aventura </button>
+        </div>
+    </form>
+</div>
+{% endblock%}

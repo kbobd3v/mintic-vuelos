@@ -13,7 +13,7 @@
 						<table class="table">
 					    <thead class="thead-primary">
 					      <tr>
-					        <th>Reserva</th>
+					        <th>Id Piloto</th>
 					        <th>Usuario</th>
 					        <th>Vuelo</th>
 							  <th>Destino</th>
@@ -30,6 +30,7 @@
 					        <td>{{ pilot[3] }}</td>
 					        <td>{{ pilot[4] }}</td>
 					        <td><a href={{ url_for('view_pilot', id_piloto=pilot[0]) }} class="btn btn-primary">Ver más</a></td>
+
 					      </tr>
                         {% endfor %}
 					    </tbody>

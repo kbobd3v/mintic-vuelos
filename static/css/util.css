@@ -2238,7 +2238,7 @@
 /* ------------------------------------ */
 .text-center {text-align: center;}
 .text-left {text-align: left;}
-.text-right {text-align: right;}
+.text-right {text-align: right; color: black;}
 .text-middle {vertical-align: middle;}
 
 /* ------------------------------------ */

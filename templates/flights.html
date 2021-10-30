@@ -7,41 +7,52 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-
-					<div class="table-wrap">
-                        <h4 class="text-center mb-4">Vuelos</h4>
-						<table class="table">
-					    <thead class="thead-primary">
-					      <tr>
-					        <th>Vuelo</th>
-					        <th>Avion</th>
-					        <th>Piloto</th>
-                            <th>Capacidad</th>
-                            <th>Origen</th>
-                            <th>Destino</th>
-                            <th>Estado</th>
-                            <th>Detalle</th>
-					      </tr>
-					    </thead>
-					    <tbody>
-                        {% for flight in flights %}
-					      <tr>
-					        <th scope="row" class="scope" >{{ flight[0] }}</th>
-					        <td>{{ flight[1] }}</td>
-					        <td>{{ flight[2] }}</td>
-							<td>{{ flight[3] }}</td>
-							<td>{{ flight[4] }}</td>
-							<td>{{ flight[5] }}</td>
-							<td>{{ flight[6] }}</td>
-					        <td><a href={{ url_for('view_flight', id_de_vuelo=flight[0]) }} class="btn btn-primary">Ver más</a></td>
-					      </tr>
-                        {% endfor %}
-					    </tbody>
-					  </table>
-					</div>
+					{% if error %}
+						{{ error }}
+					{% else %}
+						<div class="table-wrap">
+							<h4 class="text-center mb-4">Vuelos</h4>
+							<table class="table">
+							<thead class="thead-primary">
+							  <tr>
+								<th>Vuelo</th>
+								<th>Origen</th>
+								<th>Destino</th>
+								<th>Estado</th>
+								<th>Fecha de salida</th>
+								<th>Hora de salida</th>
+								<th>Fecha de regreso</th>
+								<th>Hora de regreso</th>
+								<th>Pasajeros</th>
+								<th>Detalle</th>
+							  </tr>
+							</thead>
+							<tbody>
+							{% for flight in flights %}
+							  <tr>
+								<th scope="row" class="scope" >{{ flight[0] }}</th>
+								<td>{{ flight[4] }}</td>
+								<td>{{ flight[5] }}</td>
+								<td>{{ flight[6] }}</td>
+								<td>{{ flight[7] }}</td>
+								<td>{{ flight[8] }}</td>
+								<td>{{ flight[9] }}</td>
+								<td>{{ flight[10] }}</td>
+								<td>{{ flight[11] }}</td>
+								<td><a href={{ url_for('view_flight', id_de_vuelo=flight[0]) }} class="btn btn-primary">Ver más</a>
+									<a href={{ url_for('book_flight', id_de_vuelo=flight[0]) }} class="btn btn-primary" style="margin-top: 4px;">Reservar</a></td>
+							  </tr>
+							{% endfor %}
+							</tbody>
+						  </table>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>
 	</section>
 
+	<ul class="nav">
+              <li class="scroll-to-section"><a href="{{ url_for('search_flights') }}" class="active">Ir atras</a></li>
+	</ul>
 {% endblock %}

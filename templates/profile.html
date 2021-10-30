@@ -3,17 +3,30 @@
 {% block mainTitle %} Ver perfil {% endblock %}
 
 {% block content %}
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <h3>Nombre</h3>
-        <p>{{ user.2 }}</p>
-    <hr>
-    <h3>Usuario</h3>
-        <p>{{ user.3 }}</p>
-    <hr>
-    <h3>Correo</h3>
-        <p>{{ user.4 }}</p>
-    <hr>
+<div class="wrapper">
+            <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{{ url_for('static', filename='images/perfil.jpg')}}"><span class="font-weight-bold">Leonard</span><span class="text-black-50">{{ user.4 }}</span><span> </span></div>
+        </div>
+        <div class="col-md-6 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right" style="margin: 80px 0 0 0">Ajustes de Perfil</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">Nombre</label><input type="text" style="border: 1px solid black;" class="form-control" placeholder="{{ user.2 }}" ></div>
+                    <div class="col-md-12"><label class="labels">Usuario</label><input type="text" style="border: 1px solid black;" class="form-control"  placeholder="{{ user.3 }}"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" style="border: 1px solid black;" class="form-control" placeholder="{{ user.4 }}" ></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input type="text" style="border: 1px solid black;" class="form-control" placeholder="Password" ></div>
+                </div>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Guardar Ajustes</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}

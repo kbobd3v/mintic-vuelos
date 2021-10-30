@@ -61,12 +61,16 @@
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{ url_for('home') }}" class="active">Inicio</a></li>
-              <li class="scroll-to-section"><a href="{{ url_for('view_flights') }}">Vuelos</a></li>
-              <li class="scroll-to-section"><a href="#about">Buscar</a></li>
-              <li class="scroll-to-section"><a href="{{ url_for('view_bookings') }}">Reservas</a></li>
-
-              <li class="scroll-to-section"><a href="{{ url_for('profile') }}">Perfil</a></li>
-              <li class="scroll-to-section"><div class="main-red-button-hover"><a href="{{ url_for('logout') }}">Desconectarme</a></div></li>
+              {% if tipo_usuario == 3 %}
+                 <li class="scroll-to-section"><a href="{{ url_for('search_flights') }}">Buscar vuelos</a></li>
+                 <li class="scroll-to-section"><a href="{{ url_for('profile') }}">Perfil</a></li>
+                 <li class="scroll-to-section"><div class="main-red-button-hover"><a href="{{ url_for('logout') }}">Desconectarme</a></div></li>
+               {% else %}
+                 <li class="scroll-to-section"><a href="{{ url_for('view_flights') }}">Ver vuelos</a></li>
+                 <li class="scroll-to-section"><a href="{{ url_for('view_bookings') }}">Ver Reservas</a></li>
+                 <li class="scroll-to-section"><a href="{{ url_for('view_users') }}">Ver usuarios</a></li>
+                <li class="scroll-to-section"><div class="main-red-button-hover"><a href="{{ url_for('logout') }}">Desconectarme</a></div></li>
+                {% endif %}
             </ul>
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -95,13 +99,10 @@
                   <h2>Que te gustaria  <em>hacer</em>   <span>hoy</span>?</h2>
                   <p>... </p>
                   <div class="down-buttons">
-                    <div class="main-blue-button-hover">
-                      <a href="{{ url_for('view_bookings') }}">Reservar</a>
-                    </div>
                        <div class="main-blue-button-hover">
-                      <a href="{{ url_for('view_flights') }}">Ver vuelos</a>
+                      <a href="{{ url_for('search_flights') }}">Iniciar mi aventura</a>
                     </div> <div class="main-blue-button-hover">
-                      <a href="{{ url_for('profile') }}">Mi perfil</a>
+                      <a href="{{ url_for('profile') }}">Actualizar mis datos</a>
                     </div>
 
                   </div>
