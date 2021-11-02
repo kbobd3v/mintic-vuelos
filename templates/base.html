@@ -59,6 +59,7 @@
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
+
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{ url_for('home') }}" class="active">Inicio</a></li>
               {% if tipo_usuario == 3 %}
@@ -70,7 +71,7 @@
                  <li class="scroll-to-section"><a href="{{ url_for('view_bookings') }}">Ver Reservas</a></li>
                  <li class="scroll-to-section"><a href="{{ url_for('view_users') }}">Ver usuarios</a></li>
                 <li class="scroll-to-section"><div class="main-red-button-hover"><a href="{{ url_for('logout') }}">Desconectarme</a></div></li>
-                {% endif %}
+               {% endif %}
             </ul>
             <a class='menu-trigger'>
                 <span>Menu</span>
