@@ -77,6 +77,6 @@ Finalmente lanzamos el servidor de Flask
 
 ## Screenshots
 
-![Login](https://drive.google.com/file/d/1AChOHBCxBpRlUbJG25EEKcAg7pFpcmWj)
-![Dashboard](https://drive.google.com/file/d/17thcBLPdZoYkZKGCD4TKD0P3dH7KJIEU)
+![Login](static/images/login_vuelos.jpg)
+![Dashboard](static/images/home_final_user.jpg)
 
